@@ -1,11 +1,12 @@
-#include <stdtio.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 struct EmployeeNode{
 	int employee_id;
 	char name[50];
 	float salary;
 	struct EmployeeNode* next;
-}
+};
 
 //listenin basina yeni employee ekler ve listenin yeni head ini dondurur
 struct EmployeeNode* insertEmployee(){
@@ -41,6 +42,8 @@ void freeList(){
 int main (){
 	struct EmployeeNode* head = malloc(sizeof(struct EmployeeNode));
 	
+	printf("Please chose one operation:\n1. Add new employee\n2. Delete employee\n3. Update employee salary\n4. Display all employees\n5. Exit\n");
+		
 	
 
 
