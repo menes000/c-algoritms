@@ -38,7 +38,7 @@ struct EmployeeNode* deleteEmployee(struct EmployeeNode* head, int id){
 	struct EmployeeNode* temp = head;	
 	//liste bos mu kontrolu
 	if(head==NULL){
-		printf("liste bos");
+		printf("liste bos\n");
 		return head;
 	}
 
@@ -95,7 +95,7 @@ int searchAndUpdateSalary(struct EmployeeNode* head, int id, float new_salary){
 //butun employee listesini konsola yazdirir
 void displayAllEmployees(struct EmployeeNode* head){
 	if(head==NULL){
-		printf("Liste Bos!\n")
+		printf("Liste Bos!\n");
 		return;
 	}
 	
@@ -115,7 +115,7 @@ void freeList(struct EmployeeNode* head){
 	struct EmployeeNode* temp = head;
 	struct EmployeeNode* next = NULL;
 	while(temp!=NULL){
-		next = temp->next
+		next = temp->next;
 		free(temp);
 		temp = next;
 	}
@@ -129,26 +129,52 @@ int main (){
 	int id;
 	char name[50];
 	float salary;
+	int choice;
 
 	while(1){
 	printf("Please chose one operation:\n1. Add new employee\n2. Delete employee by ID\n3. Update employee salary by ID\n4. Display all employees\n5. Exit\n");
-	scanf("%d\n", &choice);
+	scanf("%d", &choice);
 
 	switch(choice){
-		case 1:
+		case 1: //personel ekleme
 			printf("ID giriniz: ");
-			scanf("%d\n", &id);
+			scanf("%d", &id);
 			printf("ISIM giriniz: ");
-			scanf("%s\n", name);
+			scanf("%s", name);
 			printf("MAAS giriniz: ");
-			scanf("%f\n", &salary);
+			scanf("%f", &salary);
 	
+			//head i direk fonksiyonun returnune esitliyoruz
+			head = insertEmployee(head, id, name, salary);
+			printf("personel eklendi\n");
+			break;
 	
-	
-	
-	}	
-	
+		case 2:  //personel silme
+			printf("Silinecek ID yi giriniz: ");
+			scanf("%d", &id);
 
+			head = deleteEmployee(head,id);
+			break;	
+
+		case 3:  //salary update
+			printf("Maasi guncellencek ID yi giriniz: ");
+			scanf("%d", &id);
+			printf("YENI maasi giriniz: ");
+			scanf("%f", salary);
+			
+			searchAndUpdateSalary(head, id, salary);
+
+		case 4: 
+			displayAllEmployees(head);
+			break;
+		
+		case 5: 
+			freeList(head);
+	       		return 0;
+
+		default: 
+			printf("Gecersiz karakter Lutfen tekrar giriniz...");	
+	}	
 	}
 
 	return 0;
