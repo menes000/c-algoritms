@@ -1,9 +1,16 @@
 #include <stdio.h>
 
+struct node{
+int a;
+int b;
+struct node* next;
+
+}
+
 int main() {
+	struct node a;
+	printf("%x"a);
 	
-	int a[10];
-	printf("%x",a);
 	
 
 }
