@@ -14,10 +14,12 @@ struct EmployeeNode* insertEmployee(struct EmployeeNode* head, int id, const cha
 
 	struct EmployeeNode* newEmployee = malloc(sizeof(struct EmployeeNode));
 	
+	//liste bos ise calisir
 	if(head == NULL){
 		head = newEmployee;
 		newEmployee->next=NULL;	
 	}
+	//listede eleman var ise calisir
 	else{	
 		newEmployee->next=head;
 		head = newEmployee;
@@ -34,7 +36,7 @@ struct EmployeeNode* insertEmployee(struct EmployeeNode* head, int id, const cha
 struct EmployeeNode* deleteEmployee(struct EmployeeNode* head, int id){
 	
 	struct EmployeeNode* temp = head;	
-
+	//liste bos mu kontrolu
 	if(head==NULL){
 		printf("liste bos");
 		return head;
@@ -90,26 +92,64 @@ int searchAndUpdateSalary(struct EmployeeNode* head, int id, float new_salary){
 
 }
 
-//butun employye listesini konsola yazdirir
+//butun employee listesini konsola yazdirir
 void displayAllEmployees(struct EmployeeNode* head){
-
+	if(head==NULL){
+		printf("Liste Bos!\n")
+		return;
+	}
+	
+	struct EmployeeNode* temp = head;
+	printf("----------Calisan Listesi---------\n");
+	printf("%-10s%-25s%-10s\n","ID","ISIM","MAAS");
+	while(temp!=NULL){
+		printf("%-10d%-25s%-10.2f\n",temp->employee_id,temp->name,temp->salary);
+		temp = temp->next;
+	}	
 
 }
 
 //deallacotes everything
 void freeList(struct EmployeeNode* head){
 
+	struct EmployeeNode* temp = head;
+	struct EmployeeNode* next = NULL;
+	while(temp!=NULL){
+		next = temp->next
+		free(temp);
+		temp = next;
+	}
 }
 
 
 int main (){
 	struct EmployeeNode* head = NULL;
 
+	//kullanicidan veri almak icin degiskenler
+	int id;
+	char name[50];
+	float salary;
+
+	while(1){
 	printf("Please chose one operation:\n1. Add new employee\n2. Delete employee by ID\n3. Update employee salary by ID\n4. Display all employees\n5. Exit\n");
-		
+	scanf("%d\n", &choice);
+
+	switch(choice){
+		case 1:
+			printf("ID giriniz: ");
+			scanf("%d\n", &id);
+			printf("ISIM giriniz: ");
+			scanf("%s\n", name);
+			printf("MAAS giriniz: ");
+			scanf("%f\n", &salary);
+	
+	
+	
+	
+	}	
 	
 
-
+	}
 
 	return 0;
 }
