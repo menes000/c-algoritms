@@ -1,4 +1,4 @@
-//queue nin circular arrey implemantsyonu
+//queue nin circular arrey implemantsyonu ve bir bosluk birakilmis yapi front pointeri bosu gosteriyor
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,6 +9,7 @@
 int enqueue(int* queue, int number, int* rear, int front){
 	int tmp = *rear;
 	*rear = (*rear+1)%(MAX+1);
+
 	if (front == *rear) {
 		*rear = tmp;
 		printf("liste dolu\n");
@@ -18,10 +19,33 @@ int enqueue(int* queue, int number, int* rear, int front){
 	return 1;
 }
 
-int dequeue(int* queue, int number, int rear, int* front){
+//returns 0 or 1
+int dequeue(int* queue,int rear, int* front){
+	if(*front == rear){
+		printf("liste bos islem yapilamadi\n");
+		return 0 ;
+	}
+	printf("%d sayisi kaldiriliyor\n", queue[*front+1]);
+	*front = (*front+1)%(MAX+1);
+	return 1;
+
+
+}
+
+void display(int* queue, int rear, int front){
+	if(rear==front){
 	
+		printf("liste bos\n");
+		return;
 
-
+	}
+	int i = front;		
+	while(front!=rear){
+		front = (front+1)%(MAX+1);
+		printf("%d  ", queue[front]);
+		
+	}
+	printf("\n");
 }
 
 int main(){
@@ -37,7 +61,15 @@ int main(){
 				if (enqueue(queue, a, &rear, front)) 
 					printf("%d basariyla queue nin sonuna eklendi\n",a);
 				break;
-		}
+			case 2:
+				dequeue(queue, rear, &front);
+				break;
+			case 3:
+				display(queue, rear, front);
+				break;
+			
+		}	
+
 	}
 
 	return 0;
