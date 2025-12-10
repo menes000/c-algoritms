@@ -25,7 +25,7 @@ int dequeue(int* queue,int rear, int* front){
 		printf("liste bos islem yapilamadi\n");
 		return 0 ;
 	}
-	printf("%d sayisi kaldiriliyor\n", queue[*front+1]);
+	printf("%d sayisi kaldiriliyor\n", queue[(*front+1)%(MAX+1)]);
 	*front = (*front+1)%(MAX+1);
 	return 1;
 
@@ -39,7 +39,7 @@ void display(int* queue, int rear, int front){
 		return;
 
 	}
-	int i = front;		
+			
 	while(front!=rear){
 		front = (front+1)%(MAX+1);
 		printf("%d  ", queue[front]);
